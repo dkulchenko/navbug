@@ -18,6 +18,7 @@ defmodule NavbugWeb.Router do
     pipe_through :browser
 
     live "/", Live
+    get "/nonlive", PageController, :home
   end
 
   # Other scopes may use custom stacks.

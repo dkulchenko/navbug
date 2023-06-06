@@ -31,6 +31,7 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: {
+    // add editor to liveview
     Editor: {
       editor: null,
 
@@ -65,6 +66,34 @@ let liveSocket = new LiveSocket("/live", Socket, {
     },
   },
   params: { _csrf_token: csrfToken },
+});
+
+// add editor to dead view (exact same code as above, just not in a hook)
+window.addEventListener("load", function () {
+  if (document.getElementById("editor")) {
+    const editor = new Editor({
+      element: document.getElementById("editor"),
+      extensions: [StarterKit, Link.configure({ openOnClick: false })],
+      content: "",
+    });
+
+    editor
+      .chain()
+      .focus()
+      .insertContent([
+        {
+          type: "text",
+          text: "Link name",
+          marks: [
+            {
+              type: "link",
+              attrs: { href: "https://google.com", target: "" },
+            },
+          ],
+        },
+      ])
+      .run();
+  }
 });
 
 // Show progress bar on live navigation and form submits

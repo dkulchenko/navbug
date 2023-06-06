@@ -7,7 +7,7 @@ defmodule NavbugWeb.Live do
 
   def render(assigns) do
     ~H"""
-    <div phx-hook="Editor" id="editor"></div>
+    <div phx-hook="Editor" id="editor-live" phx-update="ignore"></div>
     """
   end
 end
