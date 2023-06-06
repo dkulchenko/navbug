@@ -10,8 +10,6 @@ defmodule Navbug.Application do
     children = [
       # Start the Telemetry supervisor
       NavbugWeb.Telemetry,
-      # Start the Ecto repository
-      Navbug.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Navbug.PubSub},
       # Start Finch
